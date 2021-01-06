@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: linear-gradient(0deg, orange, #FFFFB3);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+/************************* Page Content Styling****************************/
+/******* Toolbar with Logo and options buttons ********/
+.logobar {
+    margin-top: 1.6rem;
+    margin-left: 5.6rem;
+    display: inline-flex;
+    width: 100%;
+}
+
+.options {
+    width: 75%;
+    height: 4rem;
+    float: right;
+}
+
+.options ul {
+    display: block;
+    float: right;
+    align-content: flex-end;
+}
+
+.options ul li {
+    list-style-type: none;
+    margin: .8rem;
+    padding: .8rem 3.2rem;
+    text-align: center;
+    float: right;
+    background-color: darkorange;
+    border-top-left-radius: 2.5rem;
+    border-bottom-left-radius: 2.5rem;
+    border-top-right-radius: 2.5rem;
+    border-bottom-right-radius: 2.5rem;
+    cursor: pointer;
+}
+
+.options ul li a {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.brand-logo {
+    height: 5.5rem;
+    vertical-align: baseline;
+    margin: .5rem 4.8rem .5rem 10.8rem;
+}
+
+/********* Page Body **********/
+.auth-page {
+    display: block;
+    width: 100%;
+    padding: 5rem;
+    margin: auto;
+}
+
+/**** Page Featured Image ****/
+img {
+    margin-left: 30%;
+}
+
+/*** Forms Section ***/
+/* Quote Container */
+.quote-container {
+    text-align: center;
+}
+
+.quote-container h3 {
+    color: #3a3a3a;
+}
+
+.quote-container h4 {
+    color: orangered;
+    margin-left: 15%;
+}
+
+/* Forms container */
+.form-container {
+    background: white;
+    width: 40rem;
+    height: 50rem;
+    position: relative;
+    text-align: center;
+    padding: 2rem 0;
+    margin: 5% 25%;
+    border-radius: 1.6rem;
+    box-shadow: 0 0 2rem 0px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.form-container span {
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 0 1.5rem;
+    color: #555;
+    cursor: pointer;
+    width: 10rem;
+    display: inline-block;
+}
+
+.form-btn {
+    display: inline-block;
+}
+
+.form-container form {
+    max-width: 40rem;
+    padding: 0 2rem;
+    position: absolute;
+    top: 10rem;
+    transition: transform 1s;
+}
+
+form h4 {
+    margin-bottom: 2rem;
+}
+
+form input {
+    width: 100%;
+    height: 3.6rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
+    font-size: 1.4rem;
+    border: .15rem solid #555;
+    border-radius: 2rem;
+}
+
+form .submit-btn {
+    width: 100%;
+    height: 4rem;
+    border: none;
+    margin: 2.4rem 0;
+    padding: .8rem 3.2rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    background-color: darkorange;
+    border-top-left-radius: 2.5rem;
+    border-bottom-left-radius: 2.5rem;
+    border-top-right-radius: 2.5rem;
+    border-bottom-right-radius: 2.5rem;
+    cursor: pointer;
+}
+
+form a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: darkorange;
+    text-decoration: none;
+}
+
+form a:hover {
+    color: orangered;
+    text-decoration: underline;
+}
+
+form .submit-btn:active {
+    background-color: darkorange;
+}
+
+#login-form {
+    left: -40rem;
+}
+
+#register-form {
+    left: 0;
+}
+
+#indicator {
+    width: 10rem;
+    border: none;
+    color: orange;
+    background-color: orange;
+    height: .3rem;
+    margin-top: .8rem;
+    transform: translateX(10rem);
+    transition: transform 1s;
+}
+
+/********** Page Footer **********/
+#auth-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5rem;
+    color: white;
+    margin: auto;
+    text-align: center;
+    padding: .8rem;
+    font-size: 1.1rem;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.fa-copyright {
+    color: white;
+    width: 2rem;
+}
+
+/**************** Responsive according to device ********************/
+@media only screen and (max-width: 1024px) {
+
+    /* General Tablet view */
+    html {
+        font-size: 55%;
+    }
+
+    img {
+        margin-left: 20%;
+        height: 95%;
+    }
+    .form-container {
+    margin: 5%;
+}
+    .options {
+    width: 65%;
+    float: right;
+}
+    .brand-logo {
+    height: 5rem;
+    margin: .5rem 4.8rem .5rem 8rem;
+}
+}
+
+@media only screen and (max-width:768px) {
+
+    /* Low res Tablet view (Need work here) */
+    html {
+        font-size: 45%;
+    }
+}
+
+@media only screen and (max-width: 532px) {
+
+    /* Smaller tablet/Large Mobile view (Need work here) */
+    html {
+        font-size: 35%;
+    }
+}
