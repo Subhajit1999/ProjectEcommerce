@@ -58,6 +58,10 @@
             </a>
         </div>
     </div>
+
+    <?php
+        include 'common/footer.html';
+    ?>
 </body>
 
 </html>
