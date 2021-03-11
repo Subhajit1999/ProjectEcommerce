@@ -36,6 +36,32 @@ html {
     background-color: orangered;
 }
 
+/**************** website-features *****************/
+.website-features
+{
+   margin: 6rem 0;
+}
+
+.website-features img
+{
+    width: 20%;
+    padding-left: 1rem;
+}
+.feature-text
+{
+    margin-top: 1rem;
+    float: right;
+    width: 80%;
+    padding-left: 1.5rem;
+}
+.feature-text p {
+    font-size: 1.3rem;
+}
+.feature-box
+{
+    padding-top: 2rem;
+}
+
 /**************** Responsive according to device ********************/
 @media only screen and (max-width: 1024px) {
 
