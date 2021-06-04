@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
     <title>ShopYard, the Fashion Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Bootstrap library css cdn-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--Font Awesome library for all the modern project icons-->
@@ -11,15 +11,11 @@
     <!--Bootstrap js library cdn-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- StyleSheets -->
+    <!-- CSS StyleSheets -->
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <!-------------------------- JS Scripts ---------------------------------->
-    <script src="js/nav-drawer.js"></script>
-    <!------------------------------------------------------------------------>
-
     <!-------- Header (Toolbar & Navigation Bar)------------>
     <?php
         include 'common/header.html'; ?>
@@ -66,25 +62,25 @@
     <section class="website-features">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 feature-box">
+                <div class="col-md-3 col-6 feature-box">
                     <img src="img/feature-1.png">
                     <div class="feature-text">
                         <p><b>100% Original items </b>are available at company</p>
                     </div>
                 </div>
-                <div class="col-md-3 feature-box">
+                <div class="col-md-3 col-6 feature-box">
                     <img src="img/feature-2.png">
                     <div class="feature-text">
                         <p><b>Return within 30 days </b>of receiving your order.</p>
                     </div>
                 </div>
-                <div class="col-md-3 feature-box">
+                <div class="col-md-3 col-6 feature-box">
                     <img src="img/feature-3.png">
                     <div class="feature-text">
                         <p><b>Get free delivery for every </b>order on more than price.</p>
                     </div>
                 </div>
-                <div class="col-md-3 feature-box">
+                <div class="col-md-3 col-6 feature-box">
                     <img src="img/feature-4.png">
                     <div class="feature-text">
                         <p><b>Pay Online through multiple option</b>(card/Net banking)</p>
@@ -94,8 +90,13 @@
         </div>
     </section>
 
+    <!----------- Footer -------------->
     <?php
         include 'common/footer.html'; ?>
+
+    <!-------------------------- JS Scripts ---------------------------------->
+    <script src="js/nav-drawer.js"></script>
+    <!------------------------------------------------------------------------>
 </body>
 
 </html>
