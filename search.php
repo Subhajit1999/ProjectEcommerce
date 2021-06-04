@@ -52,7 +52,7 @@
                         <i class="fa fa-star-half-o"></i>
                         <h3>Woodland</h3>
                         <h4><i>New spring woman shoes (high-heeled)</i></h4>
-                        <h5>$79.49</h5>
+                        <h5>&#8377;79.49</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-6">
@@ -80,7 +80,7 @@
                         <i class="fa fa-star"></i>
                         <h3>Giny &#38; Jony</h3>
                         <h4><i>Skirt &#38; top kids dress set</i></h4>
-                        <h5>$26.39</h5>
+                        <h5>&#8377;26.39</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-6">
@@ -108,7 +108,7 @@
                         <i class="fa fa-star-half-o"></i>
                         <h3>Rider</h3>
                         <h4><i>Premium leather watch for Men (Brown)</i></h4>
-                        <h5>$149.90</h5>
+                        <h5>&#8377;149.90</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-6">
@@ -136,7 +136,7 @@
                         <i class="fa fa-star-o"></i>
                         <h3>Urban Forest</h3>
                         <h4><i>Ultimate wallet, card holder &#38; belt combo (Brown)</i></h4>
-                        <h5>$300.00</h5>
+                        <h5>&#8377;300.00</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-6">
@@ -164,7 +164,7 @@
                         <i class="fa fa-star-half-o"></i>
                         <h3>Woodland</h3>
                         <h4><i>New spring woman shoes (high-heeled)</i></h4>
-                        <h5>$79.49</h5>
+                        <h5>&#8377;79.49</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-6">
@@ -192,7 +192,7 @@
                         <i class="fa fa-star"></i>
                         <h3>Giny &#38; Jony</h3>
                         <h4><i>Skirt &#38; top kids dress set</i></h4>
-                        <h5>$26.39</h5>
+                        <h5>&#8377;26.39</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-6">
@@ -220,7 +220,7 @@
                         <i class="fa fa-star-half-o"></i>
                         <h3>Rider</h3>
                         <h4><i>Premium leather watch for Men (Brown)</i></h4>
-                        <h5>$149.90</h5>
+                        <h5>&#8377;149.90</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4 col-6">
@@ -248,7 +248,7 @@
                         <i class="fa fa-star-o"></i>
                         <h3>Urban Forest</h3>
                         <h4><i>Ultimate wallet, card holder &#38; belt combo (Brown)</i></h4>
-                        <h5>$300.00</h5>
+                        <h5>&#8377;300.00</h5>
                     </div>
                 </div>
             </div>

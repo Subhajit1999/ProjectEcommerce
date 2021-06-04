@@ -123,8 +123,12 @@ del {
 	text-align: center;
 }
 
+.buttons {
+    margin: auto 0;
+}
+
 .product-remove{
-	position: absolute;
+/*	position: absolute;*/
 	bottom: 2rem;
 	right: 2rem;
 	padding: 1rem 2.5rem;
@@ -132,12 +136,12 @@ del {
 	color: white;
 	cursor: pointer;
 	border-radius: .5rem;
+    margin-right: 1.5rem;
 }
 
 .product-remove:hover{
 	background-color: white;
 	color: red;
-	font-weight: 600;
 	border: .1rem solid orangered;
 }
 

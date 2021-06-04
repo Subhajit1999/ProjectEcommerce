@@ -87,10 +87,10 @@
             <div class="col-25">
                 <div class="container">
                     <h3 class="summary_title">Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h3>
-                    <p><a href="#" class="item_title">IPHONE 12 Pro</a> <span class="price2">$1499.99</span></p>
-                    <p><a href="#" class="item_title">SAMSUNG S21</a> <span class="price2">$700.00</span></p>
+                    <p><a href="#" class="item_title">IPHONE 12 Pro</a> <span class="price2">&#8377;1499.99</span></p>
+                    <p><a href="#" class="item_title">SAMSUNG S21</a> <span class="price2">&#8377;700.00</span></p>
                     <hr>
-                    <p class="field_title">Total <span class="price"><b>$2199.99</b></span></p>
+                    <p class="field_title">Total <span class="price"><b>&#8377;2199.99</b></span></p>
                 </div>
             </div>
         </div>

@@ -211,6 +211,19 @@ h3 {
     width: 100%;
 }
 
+.address-edit .fa {
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    background: orange;
+    border-radius: .8rem;
+    padding: .5rem;
+}
+
+.address-edit .fa:hover {
+    background: orangered;
+}
+
 .wishlist-price {
     color: white;
     font-weight: bold;
@@ -219,6 +232,20 @@ h3 {
     background-color: orangered;
     border-radius: .8rem;
     margin-left: .6rem;
+}
+
+.card-delete .fa {
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    margin-top: .4rem;
+    background: orangered;
+    border-radius: .8rem;
+    padding: .8rem;
+}
+
+.card-delete .fa:hover {
+    background: red;
 }
 
 .file-pos {
