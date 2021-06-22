@@ -22,12 +22,9 @@
     <div class="main-body">
         <!-------- Header (Toolbar & Navigation Bar)------------>
         <?php
-        include 'common/header.html'; ?>
+        include 'common/header.php'; ?>
 
         <div class="container body-container">
-            <!---- Nav text & Page Heading ------>
-            <p class="page-nav">Homepage / My Account</p>
-            <h1 class="page-title">My Account</h1>
 
             <div class="row main-row">
                 <!------ Profile Card with nav elements ---------->
@@ -43,6 +40,7 @@
 
                         <ul class="nav nav-pills nav-stacked">
                             <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
+							<li><a href="session_log_out.php"> <i class="fa fa-sign-out"></i> Log Out</a></li>
                         </ul>
                     </div>
                 </div>

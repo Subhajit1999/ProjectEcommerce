@@ -18,7 +18,7 @@
 <body>
     <!-------- Header (Toolbar & Navigation Bar)------------>
     <?php
-        include 'common/header.html'; ?>
+        include 'common/header.php'; ?>
 
     <!-- Main Body -->
     <div class="main-body">

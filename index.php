@@ -17,8 +17,7 @@
 
 <body>
     <!-------- Header (Toolbar & Navigation Bar)------------>
-    <?php
-        include 'common/header.html'; ?>
+        <?php include 'common/header.php'; ?>
 
     <!-- Banner Carousel -->
     <div class="banner">
@@ -56,7 +55,7 @@
 
     <!-- Products Section -->
     <?php
-        include 'components/products-main.html'; ?>
+        include 'components/products-main.php'; ?>
 
     <!-- website features -->
     <section class="website-features">

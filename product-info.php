@@ -1,8 +1,31 @@
+<?php
+	// Get the current url
+ 	$url = "http://";
+    $url.= $_SERVER['HTTP_HOST'];
+    $url.= $_SERVER['REQUEST_URI'];
+
+	//Extracting the url params
+	$url_components = parse_url($url);
+	parse_str($url_components['query'], $params);
+	$category_id = $params["id"];
+
+	//Database work
+	$con = mysqli_connect( "localhost", "root", "", "shopyard" );  // Connecting to the DB
+	// Getting category data
+	$prdct_sql = "select * from product where id='".$category_id."'";
+	$prdct_res = mysqli_query( $con, $prdct_sql );
+	$prdct_data = mysqli_fetch_array($prdct_res);
+
+	$similar_sql = "select * from product where cat_id='".$prdct_data['cat_id']."' AND id!='".$prdct_data['id']."'";
+	$similar_res = mysqli_query( $con, $similar_sql );
+
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Varanga-Woman Black Quirky... | ShopYard, the Fashion Store</title>
+    <title><?php echo $prdct_data['brand']." ".$prdct_data['short_desc'] ?> | ShopYard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Bootstrap library css cdn-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +41,7 @@
 <body>
     <!-------- Header (Toolbar & Navigation Bar)------------>
     <?php
-        include 'common/header.html'; ?>
+        include 'common/header.php'; ?>
 
     <!------------ Product information -------------->
     <div class="hero">
@@ -27,24 +50,32 @@
 
                 <div class="slider">
                     <div class="product">
+						<img src="<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['feature_img'] ); ?>" alt="" onclick="clickme(<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['feature_img'] ); ?>)">
 
-                        <img src="img/product1.png" alt="" onclick="clickme(this)">
-                        <img src="img/product2.png" alt="" onclick="clickme(this)">
-                        <img src="img/product3.png" alt="" onclick="clickme(this)">
-                        <img src="img/product4.png" alt="" onclick="clickme(this)">
+						<img src="<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['img1'] ); ?>" alt="" onclick="clickme(<?php echo 'data:image/jpeg;base64,'.base64_encode( $prdct_data['img1'] ); ?>)">
+
+						<img src="<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['img2'] ); ?>" alt="" onclick="clickme(<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['img2'] ); ?>)">
+
+						<img src="<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['img3'] ); ?>" alt="" onclick="clickme(<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['img3'] ); ?>)">
 
                     </div>
                     <div class="preview">
-                        <img src="img/product1.png" id="imagebox" alt="">
+
+                        <img src="<?php echo "data:image/jpeg;base64,".base64_encode( $prdct_data['feature_img'] ); ?>" id="imagebox" alt="">
                     </div>
                 </div>
 
             </div>
 
             <div class="col">
-                <p class="brand">Brand: Varanga</p>
-                <h1>Woman Black Quirky Print Empire Dress</h1>
-                <p class="description">An amazing range of women dress in soft and solid colors for summer that looks perfect for regular wear. With beautiful designs and patterns, these apparels are very stylish and comfortable too.</p>
+                <p class="brand">Brand: <?php echo $prdct_data['brand']; ?></p>
+                <h1><?php echo $prdct_data['short_desc']; ?></h1>
+				<?php
+					$text = $prdct_data['long_desc'];
+					$array = explode('.',$text);
+				?>
+                <p class="description"><?php echo $array[0]; ?></p>
+				<!-- Review Section short -->
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -53,16 +84,27 @@
                     <i class="fa fa-star-half-o"></i>
                     <p>(256 reviews &#38; 986 ratings)</p>
                 </div>
-                <p class="price">Price: &#8377;49.99 <del>&#8377;56.25</del><small> (12.5% off)</small></p>
+				<!-- Review Section short -->
+				<?php
+							if($prdct_data['mrp'] != $prdct_data['sale_price']) {
+						?>
+							<p class="price">Price: &#8377;<?php echo $prdct_data['sale_price']; ?> <del>&#8377;<?php echo $prdct_data['mrp']; ?></del><small> (<?php echo $prdct_data['discount']; ?>% off)</small></p>
+						<?php
+							}else {
+						?>
+							<p class="price">Price: &#8377;49.99</p>
+						<?php
+							}
+						?>
                 <p>Size: <select name="size">
-
+s
                         <option value="select size">select size</option>
                         <option value="small">small</option>
                         <option value="medium">medium</option>
                         <option value="large">large</option>
 
                     </select></p>
-                <p>Quantity: <input type="text" value="1"></p>
+                <p>Quantity: <input id="item-qty" type="text" value="1"></p>
                 <div class="table btn-options">
                     <ul>
                         <li><a href="#">Buy Now</a></li>
@@ -79,9 +121,7 @@
                 <h2>Description</h2>
             </div>
             <p class="desc">
-                Talking concerning western dresses, the culture has influenced several of the traditional dresses still. One will embrace their style with the mash-up of their own fashion statement too. And this freedom makes these dresses a lot of likable to wear anytime with none reconsideration.
-
-                The dress has Indian traditional charm. Suddenly, in a Sunday breezy morning, if you got the intuition of stepping into a laid-back attitude, then this dress can build desire you’re on the beach vacation. The dress hides the feminine curves fantastically to showcase the spirit of the woman. So, select a day and wear it matching with your mood. This dress may be a excellent apparel for any kind of body shape.
+                <?php echo $prdct_data['long_desc']; ?>
             </p>
         </div>
     </section>
@@ -161,22 +201,13 @@
                 <h2>Similar Items</h2>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <?php
+					$i = 0;
+					while(($similar_row = mysqli_fetch_array($similar_res)) and ($i<4)) {
+				?>
+                <div class="col-lg-3 col-sm-4 col-6">
                     <div class="product-top">
-                        <img src="img/onsale1.png">
-                        <div class="overlay-right">
-                            <!--
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
--->
-                        </div>
+						<?php echo '<a href="/ecommerce/product-info.php?id='.$similar_row['id'].'"><img height=365 src="data:image/jpeg;base64,'.base64_encode( $similar_row['feature_img'] ).'"/></a>'; ?>
                     </div>
                     <div class="product-bottom text-center">
                         <i class="fa fa-star"></i>
@@ -184,95 +215,25 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <h3>Realme Watch S</h3>
-                        <h4><i>(Black Strap, Regular)</i></h4>
-                        <h5>&#8377;68.00 <del>&#8377;79.00</del></h5>
+                        <h3><?php echo htmlspecialchars($similar_row['brand']); ?></h3>
+                        <h4><i><?php echo htmlspecialchars($similar_row['short_desc']); ?></i></h4>
+                        <?php
+							if($similar_row['mrp'] != $similar_row['sale_price']) {
+						?>
+							<h5><b>&#8377; <?php echo $similar_row['sale_price']; ?></b> <del>&#8377; <?php echo $similar_row['mrp']; ?></del>  <b style="color:green; ">(<?php echo $similar_row['discount'];?>%)</b></h5>
+						<?php
+							}else {
+						?>
+							<h5><b>&#8377; <?php echo $similar_row['mrp']; ?></b></h5>
+						<?php
+							}
+						?>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="product-top">
-                        <img src="img/onsale2.jpg">
-                        <div class="overlay-right">
-                            <!--
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
--->
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <h3>LEVI's</h3>
-                        <h4><i>Skinny Men dark blue jeans</i></h4>
-                        <h5>&#8377;19.99 <del>&#8377;24.99</del></h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="product-top">
-                        <img src="img/onsale3.jpg">
-                        <div class="overlay-right">
-                            <!--
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
--->
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <h3>Dunkaston</h3>
-                        <h4><i>Sneakers for Men (white)</i></h4>
-                        <h5>&#8377;8.99 <del>&#8377;12.99</del></h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="product-top">
-                        <img src="img/onsale4.jpg">
-                        <div class="overlay-right">
-                            <!--
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
--->
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <h3>Libas</h3>
-                        <h4><i>Women printed kurta (Yellow)</i></h4>
-                        <h5>&#8377;20.00 <del>&#8377;25.00</del></h5>
-                    </div>
-                </div>
+				<?php
+						$i++;
+					}
+				?>
             </div>
         </div>
     </section>
@@ -285,9 +246,11 @@
     <script src="js/nav-drawer.js"></script>
     <script>
         function clickme(smallImg) {
+			document.cookie = "small-img=" + smallImg;
 
             var fullImg = document.getElementById("imagebox");
-            fullImg.src = smallImg.src;
+			fullImg.setAttribute('src', "<?php echo $_COOKIE['small-img']; ?>");
+//            fullImg.src = smallImg.src;
 
         }
 

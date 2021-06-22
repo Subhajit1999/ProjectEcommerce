@@ -18,14 +18,14 @@
 <body>
     <!-------- Header (Toolbar & Navigation Bar)------------>
     <?php
-        include 'common/header.html'; ?>
+        include 'common/header.php'; ?>
 
     <!-- Main Body -->
     <section class="search-body">
 
         <!------- Products -------->
         <div class="container">
-            <h2 class="search-heading">Showing search Result for: <span>Casual Footewear</span></h2>
+            <h2 class="search-heading">Showing search Result for: <span>Latest products</span></h2>
             <div class="row">
                 <div class="col-lg-3 col-sm-4 col-6">
                     <div class="product-top">

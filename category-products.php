@@ -1,8 +1,35 @@
+<?php
+	// Get the current url
+ 	$url = "http://";
+    $url.= $_SERVER['HTTP_HOST'];
+    $url.= $_SERVER['REQUEST_URI'];
+
+	//Extracting the url params
+	$url_components = parse_url($url);
+	parse_str($url_components['query'], $params);
+	$category_id = $params["cat_id"];
+
+	//Database work
+	$con = mysqli_connect( "localhost", "root", "", "shopyard" );  // Connecting to the DB
+	// Getting category data
+	$cat_sql = "select * from category where id='".$category_id."'";
+	$cat_res = mysqli_query( $con, $cat_sql );
+	$cat_data = mysqli_fetch_array($cat_res);
+	//Getting products data
+	$trend_sql = "select * from product where cat_id='".$category_id."' AND trending LIKE 'yes' LIMIT 4";
+	$more_sql = "select * from product where cat_id='".$category_id."' AND trending LIKE 'no'";
+    $trend_res = mysqli_query( $con, $trend_sql );
+	$more_res = mysqli_query( $con, $more_sql );
+
+//	echo "<script> alert(".$count."); </script>";
+
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Men's Footwears | ShopYard</title>
+    <title><?php echo $cat_data['cat_name']; ?> | ShopYard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Bootstrap library css cdn-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,12 +45,12 @@
 <body>
     <!-------- Header (Toolbar & Navigation Bar)------------>
     <?php
-        include 'common/header.html'; ?>
+        include 'common/header.php'; ?>
 
     <!-- Banner Carousel -->
     <div class="banner">
         <div class="cateegory-image">
-            <img src="gif/mens%20footwear.gif" alt="" width="100%">
+			<?php echo '<img src="data:image/png;base64,'.base64_encode($cat_data["cat_img_banner"]).'" alt="" width="100%"/>'; ?>
         </div>
     </div>
 
@@ -36,22 +63,12 @@
             </div>
 
             <div class="row">
+				<?php
+					while($trend_row = mysqli_fetch_array($trend_res)) {
+				?>
                 <div class="col-lg-3 col-sm-4 col-6">
                     <div class="product-top">
-                        <img src="img/new1.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
+						<?php echo '<a href="/ecommerce/product-info.php?id='.$trend_row['id'].'"><img height=365 src="data:image/jpeg;base64,'.base64_encode( $trend_row['feature_img'] ).'"/></a>'; ?>
                     </div>
                     <div class="product-bottom text-center">
                         <i class="fa fa-star"></i>
@@ -59,95 +76,24 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <h3>Marks &#38; Spencer</h3>
-                        <h4><i>Cropped jeans for girls (6-12 yrs.)</i></h4>
-                        <h5>&#8377;14.49</h5>
+                        <h3><?php echo htmlspecialchars($trend_row['brand']); ?></h3>
+                        <h4><i><?php echo htmlspecialchars($trend_row['short_desc']); ?></i></h4>
+                        <?php
+							if($trend_row['mrp'] != $trend_row['sale_price']) {
+						?>
+							<h5><b>&#8377; <?php echo $trend_row['sale_price']; ?></b> <del>&#8377; <?php echo $trend_row['mrp']; ?></del>  <b style="color:green; ">(<?php echo $trend_row['discount'];?>%)</b></h5>
+						<?php
+							}else {
+						?>
+							<h5><b>&#8377; <?php echo $trend_row['mrp']; ?></b></h5>
+						<?php
+							}
+						?>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new2.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <h3>Manyavar</h3>
-                        <h4><i>Printed slik kurta jacket set (Navy Blue)</i></h4>
-                        <h5>&#8377;49.00</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new3.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <h3>Bata</h3>
-                        <h4><i>Brown formal shoes for Men</i></h4>
-                        <h5>&#8377;68.99</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new4.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <h3>Newton</h3>
-                        <h4><i>Women analogue watch (blue)</i></h4>
-                        <h5>&#8377;35.99</h5>
-                    </div>
-                </div>
+				<?php
+					}
+				?>
             </div>
         </div>
     </section>
@@ -157,22 +103,12 @@
                 <h2>More Products</h2>
             </div>
             <div class="row">
+				<?php
+					while($more_row = mysqli_fetch_array($more_res)) {
+				?>
                 <div class="col-lg-3 col-sm-4 col-6">
                     <div class="product-top">
-                        <img src="img/new5.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
+						<?php echo '<a href="/ecommerce/product-info.php?id='.$more_row['id'].'"><img height=365 src="data:image/jpeg;base64,'.base64_encode( $more_row['feature_img'] ).'"/></a>'; ?>
                     </div>
                     <div class="product-bottom text-center">
                         <i class="fa fa-star"></i>
@@ -180,207 +116,24 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-half-o"></i>
-                        <h3>Woodland</h3>
-                        <h4><i>New spring woman shoes (high-heeled)</i></h4>
-                        <h5>&#8377;79.49</h5>
+                        <h3><?php echo htmlspecialchars($more_row['brand']); ?></h3>
+                        <h4><i><?php echo htmlspecialchars($more_row['short_desc']); ?></i></h4>
+                        <?php
+							if($more_row['mrp'] != $more_row['sale_price']) {
+						?>
+							<h5><b>&#8377; <?php echo $more_row['sale_price']; ?></b> <del>&#8377; <?php echo $more_row['mrp']; ?></del></h5>
+						<?php
+							}else {
+						?>
+							<h5><b>&#8377; <?php echo $more_row['mrp']; ?></b></h5>
+						<?php
+							}
+						?>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new6.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <h3>Giny &#38; Jony</h3>
-                        <h4><i>Skirt &#38; top kids dress set</i></h4>
-                        <h5>&#8377;26.39</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new7.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <h3>Rider</h3>
-                        <h4><i>Premium leather watch for Men (Brown)</i></h4>
-                        <h5>&#8377;149.90</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new8.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <h3>Urban Forest</h3>
-                        <h4><i>Ultimate wallet, card holder &#38; belt combo (Brown)</i></h4>
-                        <h5>&#8377;300.00</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new5.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <h3>Woodland</h3>
-                        <h4><i>New spring woman shoes (high-heeled)</i></h4>
-                        <h5>&#8377;79.49</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new6.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <h3>Giny &#38; Jony</h3>
-                        <h4><i>Skirt &#38; top kids dress set</i></h4>
-                        <h5>&#8377;26.39</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new7.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <h3>Rider</h3>
-                        <h4><i>Premium leather watch for Men (Brown)</i></h4>
-                        <h5>&#8377;149.90</h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-4 col-6">
-                    <div class="product-top">
-                        <img src="img/new8.jpg">
-
-                        <div class="overlay-right">
-                            <button type="button" class="btn btn-secondary" title="Quick Shop">
-
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Wishlist">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="btn btn-secondary" title="Add to Cart">
-                                <i class="fa fa-shopping-cart"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-bottom text-center">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <h3>Urban Forest</h3>
-                        <h4><i>Ultimate wallet, card holder &#38; belt combo (Brown)</i></h4>
-                        <h5>&#8377;300.00</h5>
-                    </div>
-                </div>
+				<?php
+					}
+				?>
             </div>
         </div>
     </section>

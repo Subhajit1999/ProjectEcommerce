@@ -20,7 +20,7 @@
 <body>
     <!-------- Header (Toolbar & Navigation Bar)------------>
     <?php
-        include 'common/header.html'; ?>
+        include 'common/header.php'; ?>
 
     <!--------- Cart Items ----------->
     <div class="container">
