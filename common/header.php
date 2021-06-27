@@ -13,8 +13,8 @@
 		parse_str($url_components['query'], $params);
 	}
 
-$email = "";
-if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes"){ // User not logged in
+	$email = "";
+	if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes"){ // User not logged in
     	setcookie("firsttime", "yes", /* EXPIRE */);
 	}else {                                          // User logged in
   		if($_SESSION['user']=="") { // If email not exists or session expires
@@ -24,7 +24,7 @@ if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes"){ // User no
 	}
 
 	if(isset($_COOKIE['show-toast']) and $_COOKIE['show-toast']=='yes') {
-		setcookie('show-toast','',time()-1000);
+		setcookie('show-toast','',time()+1000,'/');
 		require_once 'common/toast.php';
 	}
 ?>

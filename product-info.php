@@ -2,6 +2,7 @@
 	if(session_status()!=PHP_SESSION_ACTIVE) {
 		session_start();
 	}
+
 	// Get the current url
  	$url = "http://";
     $url.= $_SERVER['HTTP_HOST'];
@@ -24,10 +25,9 @@
 
 	$json = json_decode($prdct_data['sizes'], true);
 	$size_arr = $json!=null? $json['options'] : null;
-//	echo "<script> alert(".$size_arr[0]."); </script>";
 
-	setcookie('qty',1,);
-	setcookie('size',$size_arr[0],);
+	$qnty = 1;
+	$size = $size_arr[0];
 
 ?>
 
@@ -120,13 +120,13 @@
 						<?php } ?>
 					</select></p>
 
-				<p>Quantity: <i id="minus" class="fa fa-minus-square" aria-hidden="true"></i><input name="quantity" id="item-qty" type="text" value="1"> <i id="plus" class="fa fa-plus-square" aria-hidden="true"></i></p>
+				<p>Quantity: <i id="minus" class="fa fa-minus-square" aria-hidden="true" style="color:orangered; margin:0px 5px;"></i><input name="quantity" id="item-qty" type="text" value="1"> <i id="plus" class="fa fa-plus-square" aria-hidden="true" style="color:orangered; margin:0px 5px;"></i></p>
 				<!-- Buttons -->
 				<div class="table btn-options">
 					<ul>
-						<li><a id="button" href="php/product-buy.php?src=buy&id=<?php echo $prdct_data['id']; ?>&qty=<?php echo $_COOKIE['qty']; ?>&size=<?php echo $_COOKIE['size']; ?>">Buy Now</a></li>
+						<li><a id="button" href="php/product-buy.php?src=buy&id=<?php echo $prdct_data['id']; ?>&qty=<?php echo $qnty; ?>&size=<?php echo $size; ?>">Buy Now</a></li>
 
-						<li><a href="php/product-buy.php?src=add-cart&id=<?php echo $prdct_data['id']; ?>&qty=<?php echo $_COOKIE['qty']; ?>&size=<?php echo $_COOKIE['size']; ?>"><i class="fa fa-shopping-cart"></i>Add to Cart</a></li>
+						<li><a href="php/product-buy.php?src=add-cart&id=<?php echo $prdct_data['id']; ?>&qty=<?php echo $qnty; ?>&size=<?php echo $size; ?>"><i class="fa fa-shopping-cart"></i>Add to Cart</a></li>
 					</ul>
 				</div>
 			</div>
@@ -278,16 +278,12 @@
 			var value = document.getElementById('item-qty').value;
 			value = parseInt(value) + 1;
 			document.getElementById('item-qty').value = value;
-
-//			alert('plus clicked:' + url.toString());
 		});
 
 		$('#minus').click(function() {
 			var value = document.getElementById('item-qty').value;
 			value = parseInt(value)>1? parseInt(value) - 1 : parseInt(value);
 			document.getElementById('item-qty').value = value;
-
-//			alert('plus clicked:' + url.toString());
 		});
 
 	</script>

@@ -21,8 +21,6 @@
     $trend_res = mysqli_query( $con, $trend_sql );
 	$more_res = mysqli_query( $con, $more_sql );
 
-//	echo "<script> alert(".$count."); </script>";
-
 ?>
 
 <!DOCTYPE html>

@@ -13,8 +13,6 @@
 	$sql = "SELECT * FROM product WHERE brand LIKE '%".$search_term."%' OR short_desc LIKE '%".$search_term."%' OR long_desc LIKE '%".$search_term."%'";
 	$result = mysqli_query($con, $sql);
 	$count = $result != FALSE? mysqli_num_rows($result) : 0;
-
-//	echo "<script> alert('".count($params)."'); </script>";
 ?>
 
 <!DOCTYPE html>

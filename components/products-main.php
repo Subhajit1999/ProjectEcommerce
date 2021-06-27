@@ -12,7 +12,6 @@
 	$excl_res = mysqli_query( $con, $excl_sql );
 	$excl_data = mysqli_fetch_array($excl_res);
 
-//	echo "<script> alert(".mysqli_num_rows($new_res)."); </script>";
 ?>
 
 <!DOCTYPE html>

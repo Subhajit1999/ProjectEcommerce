@@ -82,9 +82,13 @@ if ( ( $_SERVER['REQUEST_METHOD'] == 'POST' ) and ( isset( $_POST['login_user'] 
 		$_SESSION['toast_type'] = "success";
 
 		if($params['src']!='main') {
-//			header( "location:php/product-buy.php?src=auth" );
+			$item_id = (int) $params["id"];
+			$qnty = (int) $params["qty"];
+			$size = $params["size"];
+			header( "location:php/product-buy.php?src=auth&id=".$item_id."&qty=".$qty."&size=".$size);
+
 		}else {
-			setcookie("show-toast", "yes",/* EXPIRE */);
+			setcookie("show-toast", "yes",time()+1000,'/');
 			header( "location:index.php" );
 		}
 
