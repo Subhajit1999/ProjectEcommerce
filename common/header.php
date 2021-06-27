@@ -1,16 +1,31 @@
 <?php
+	if(session_status()!=PHP_SESSION_ACTIVE) {
+		session_start();
+	}
+	$url = "http://";
+    $url.= $_SERVER['HTTP_HOST'];
+    $url.= $_SERVER['REQUEST_URI'];
+
+	//Extracting the url params, if any
+	$url_components = parse_url($url);
+	$params = array();
+	if(array_key_exists('query',$url_components)) {
+		parse_str($url_components['query'], $params);
+	}
+
 $email = "";
-if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes") // User not logged in
-	{
+if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes"){ // User not logged in
     	setcookie("firsttime", "yes", /* EXPIRE */);
-	}else                                           // User logged in
-	{
-    	session_start();
-  		if($_SESSION['user']=="")  // If email not exists or session expires
-     	{
+	}else {                                          // User logged in
+  		if($_SESSION['user']=="") { // If email not exists or session expires
         	header("location:auth.php");
      	}
    		$email=$_SESSION['user'];
+	}
+
+	if(isset($_COOKIE['show-toast']) and $_COOKIE['show-toast']=='yes') {
+		setcookie('show-toast','',time()-1000);
+		require_once 'common/toast.php';
 	}
 ?>
 
@@ -28,6 +43,7 @@ if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes") // User not
 
 	<!-- StyleSheets -->
 	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/toast.css">
 </head>
 
 <body>
@@ -42,15 +58,13 @@ if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes") // User not
 			</div>
 			<!--Search Bar-->
 			<div class="search-bar">
-				<a href="/ecommerce/search.php">
-					<!-- TODO: <a> tag temporary -->
-					<form action="">
-						<input type="text" placeholder=" Search by Products or Categories" name="search">
-						<button type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-					</form>
-				</a>
+				<!-- TODO: <a> tag temporary -->
+				<form action="/ecommerce/php/search_config.php" method="post">
+					<input type="text" placeholder=" Search by Products or Categories" name="search">
+					<button type="submit" name="search-btn">
+						<i class="fa fa-search"></i>
+					</button>
+				</form>
 			</div>
 			<!-- Toolbar options-->
 			<div class="nav-options">
@@ -59,11 +73,11 @@ if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes") // User not
 						// If user not logged in
 						if (!isset($_COOKIE['firsttime']) or $_COOKIE['firsttime'] == "yes")
 						{
- 							echo "<li><a href=\"auth.php\">Login</a></li>";
+ 							echo "<li><a href=\"auth.php?src=main\">Login</a></li>";
 						}else   // User logged in
 						{
     						if ( $_SESSION['user'] == "" ) {
-    							echo "<li><a href=\"auth.php\">Login</a></li>";
+    							echo "<li><a href=\"auth.php?src=main\">Login</a></li>";
 							}else{
 								echo "<li><a href=\"profile.php\">Account</a></li>";
 							}

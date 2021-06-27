@@ -16,6 +16,7 @@ include( 'php/auth_config.php' ) ?>
 
 	<!-- StyleSheets -->
 	<link rel="stylesheet" href="css/authpage.css">
+	<link rel="stylesheet" href="css/toast.css">
 </head>
 
 <body>
@@ -78,14 +79,6 @@ include( 'php/auth_config.php' ) ?>
 		</div>
 	</div>
 
-	<!-- Attribution Footer -->
-<!--
-	<div id="auth-footer">
-		<h6><i class="fa fa-copyright"></i><em>Copyright @2020.</em></h6>
-		<p><em>All rights reserved. Designed by </em><b>RS Studio</b><br />
-		</p>
-	</div>
--->
 	<?php include "common/footer.html" ?>
 
 	<!----------- JS Scripts ------------->

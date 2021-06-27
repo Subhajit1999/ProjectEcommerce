@@ -30,6 +30,17 @@ html {
     color: #3a3a3a;
 }
 
+.nothing-msg-container {
+	width: 100%;
+	position: absolute;
+	text-align: center;
+}
+
+.nothing-msg-container h1,h2 {
+	margin:auto;
+    vertical-align:middle;
+}
+
 /*-------------product-top CSS----------------*/
 
 .product-top img {
@@ -44,32 +55,6 @@ html {
     margin-left: 0;
     width: 7rem;
 }
-
-/*
-.overlay-right .fa {
-    cursor: pointer;
-    background-color: #fff;
-    color: #000;
-    height: 3.5rem;
-    width: 3.5rem;
-    font-size: 2rem;
-    padding: .7rem;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-.overlay-right .btn-secondary {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.product-top:hover .overlay-right {
-    opacity: 1;
-    margin-left: 5%;
-    transition: 0.5s;
-}
-*/
 
 /*--------------Product-bottom-CSS---------------*/
 .product-bottom {

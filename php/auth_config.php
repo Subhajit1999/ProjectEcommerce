@@ -1,4 +1,13 @@
 <?php
+	$url = "http://";
+    $url.= $_SERVER['HTTP_HOST'];
+    $url.= $_SERVER['REQUEST_URI'];
+
+	//Extracting the url params, if any
+	$url_components = parse_url($url);
+	if(array_key_exists('query',$url_components)) {
+		parse_str($url_components['query'], $params);
+	}
 
 $con = mysqli_connect( "localhost", "root", "", "shopyard" );  // Connecting to the DB
 
@@ -67,14 +76,17 @@ if ( ( $_SERVER['REQUEST_METHOD'] == 'POST' ) and ( isset( $_POST['login_user'] 
 
         $_SESSION['user'] = $email;
 		setcookie("firsttime", "no", /* EXPIRE */);
-/*		$_SESSION['toast_title'] = "Success!";
+
+		$_SESSION['toast_title'] = "Success!";
 		$_SESSION['toast_msg'] = "You logged in successfully.";
 		$_SESSION['toast_type'] = "success";
-		?>
 
-		<?php require_once 'common/toast.php' ?>
-		<?php */
-        header( "location:index.php" );
+		if($params['src']!='main') {
+//			header( "location:php/product-buy.php?src=auth" );
+		}else {
+			setcookie("show-toast", "yes",/* EXPIRE */);
+			header( "location:index.php" );
+		}
 
     } else {  // Error
 		$_SESSION['toast_title'] = "Error!";
