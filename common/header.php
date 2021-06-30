@@ -83,7 +83,7 @@
 							}
 						}
 					?>
-					<li><a href="cart.php"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+					<li><a href="php/cart_handle_auth.php"><i class="fa fa-shopping-cart"></i>Cart</a></li>
 				</ul>
 			</div>
 		</div>

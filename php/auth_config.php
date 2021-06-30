@@ -81,12 +81,15 @@ if ( ( $_SERVER['REQUEST_METHOD'] == 'POST' ) and ( isset( $_POST['login_user'] 
 		$_SESSION['toast_msg'] = "You logged in successfully.";
 		$_SESSION['toast_type'] = "success";
 
-		if($params['src']!='main') {
+		if($params['src']=='product') {
 			$item_id = (int) $params["id"];
 			$qnty = (int) $params["qty"];
 			$size = $params["size"];
 			header( "location:php/product-buy.php?src=auth&id=".$item_id."&qty=".$qty."&size=".$size);
 
+		}elseif($params['src']=='cart') {
+			setcookie("show-toast", "yes",time()+1000,'/');
+			header( "location:php/cart_handle_auth.php");
 		}else {
 			setcookie("show-toast", "yes",time()+1000,'/');
 			header( "location:index.php" );
