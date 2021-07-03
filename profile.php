@@ -34,7 +34,7 @@
                     <div class="panel">
                         <div class="user-heading round">
                             <a href="#">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                                <img src="https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png" alt="">
                             </a>
                             <h1 class="user-name"><?php echo $user_data['fname']." ".$user_data['lname']; ?></h1>
                             <p><?php echo $user_data['email']; ?></p>
@@ -82,6 +82,7 @@
                                     <!------ Orders card ------>
 									<?php
 										$i = 0;
+									  if(mysqli_num_rows($recent_res)>0) {
 										while($recent_row = mysqli_fetch_array($recent_res) and $i<2) {
 											$item_json = json_decode( $recent_row['items'], true );
 											$item_arr = $item_json != null? $item_json['items']: array();
@@ -106,6 +107,15 @@
 											$i++;
 											}
 										}
+									  }else{
+									?>
+										<div>
+											<h1 style="text-align:center;font-size:22px;font-weight:bold;color:orangered;margin-top:13%;">Empty!<span style='font-size:22px;'>&#128532;</span></h1>
+
+											<h2 style="text-align:center;margin-bottom:13%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:16px;">There's nothing in the cart.</h2>
+											</div>
+									<?php
+									  }
 									?>
                                 </div>
                             </div>
@@ -117,6 +127,7 @@
                                     <h3 class="address-title">Saved Addresses</h3>
                                     <div class="row address-row">
 										<?php
+										  if(count($addr_arr)>0) {
 											foreach($addr_arr as $addr) {
 												$address = $addr['addr'].", ".$addr['city'].", ".$addr['state']." - ".$addr['pin']." | Phone: ".$addr['phone'];
 										?>
@@ -133,6 +144,15 @@
                                         </div>
 										<?php
 											}
+										  }else{
+										?>
+											  <div>
+												<h1 style="text-align:center;font-size:22px;font-weight:bold;color:orangered;margin-top:11%;">Empty!<span style='font-size:22px;'>&#128532;</span></h1>
+
+												<h2 style="text-align:center;margin-bottom:11%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:16px;">There's nothing in the cart.</h2>
+											</div>
+										<?php
+										  }
 										?>
                                     </div>
                                 </div>
@@ -140,31 +160,44 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!------ Row 2 Panel Card 1 (Wishlist) ---------->
+                        <!------ Row 2 Panel Card 1 (Cart) ---------->
                         <div class="col-md-6 col-12">
                             <div class="panel">
                                 <div class="panel-body">
-                                    <h3>My Wishlist</h3>
+                                    <h3>My Cart</h3>
                                     <!------ Wishlist product card ------>
+									<?php
+									  if(count($cart_arr)>0) {
+										$i=0;
+										if($i<2){
+											foreach($cart_arr as $item) {
+												$sql = "SELECT * from product WHERE id='".$user_data['id']."'";
+												$res = mysqli_query($con, sql);
+												$item_data = mysqli_fetch_array($res);
+									?>
                                     <div class="row orders-row">
                                         <div class="col-4">
-                                            <img src="https://rukminim1.flixcart.com/image/580/696/kl9rssw0/shoe/u/h/0/7-hkk72-adidas-conavy-scrora-stone-original-imagyfkkzvykmgwz.jpeg" class="recent-orders-img">
+                                            <?php echo '<img height=365 src="data:image/jpeg;base64,'.base64_encode( $data['feature_img'] ).'" class="recent-orders-img"/>'; ?>
                                         </div>
                                         <div class="col-6">
-                                            <h5 class="recent-orders-h5">ADIDAS <span class="wishlist-price">&#8377; 55.45</span></h5>
-                                            <p class="recent-orders-p">Adi-Dash M Running Shoes For Men</p>
+                                            <h5 class="recent-orders-h5"><?php echo $item_data['brand']; ?> <span class="wishlist-price">&#8377; <?php echo $item_data['sale_price']; ?></span></h5>
+                                            <p class="recent-orders-p"><?php echo $item_data['short_desc']; ?></p>
                                         </div>
                                     </div>
-                                    <!------ Wishlist product card ------>
-                                    <div class="row orders-row">
-                                        <div class="col-4">
-                                            <img src="https://rukminim1.flixcart.com/image/580/696/kdnf98w0hlty2aw-0/t-shirt/i/i/5/-original-imafunx3fzsrxjwh.jpeg?q=50" class="recent-orders-img">
-                                        </div>
-                                        <div class="col-6">
-                                            <h5 class="recent-orders-h5">TRIPR <span class="wishlist-price">&#8377; 21.99</span></h5>
-                                            <p class="recent-orders-p">Abstract Men Hooded Neck Dark Blue T-Shirt</p>
-                                        </div>
-                                    </div>
+									<?php
+											$i++;
+										    }
+										  }
+										}else{
+										?>
+											<div>
+												<h1 style="text-align:center;font-size:22px;font-weight:bold;color:orangered;margin-top:13%;">Empty!<span style='font-size:22px;'>&#128532;</span></h1>
+
+												<h2 style="text-align:center;margin-bottom:13%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:16px;">There's nothing in the cart.</h2>
+											</div>
+										<?php
+										 }
+									?>
                                 </div>
                             </div>
                         </div>
@@ -175,6 +208,7 @@
                                     <h3>Saved Cards</h3>
                                     <!------ Orders card ------>
 									<?php
+									  if(count($card_arr)>0) {
 										foreach($card_arr as $card) {
 											$card_num = '**** **** **** ';
 											$card_num .= substr($card['number'], 12, 4);
@@ -211,7 +245,16 @@
                                         </div>
                                     </div>
 									<?php
-										}
+										 }
+										}else{
+									?>
+											<div>
+												<h1 style="text-align:center;font-size:22px;font-weight:bold;color:orangered;margin-top:13%;">Empty!<span style='font-size:22px;'>&#128532;</span></h1>
+
+												<h2 style="text-align:center;margin-bottom:13%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:16px;">There's nothing in the cart.</h2>
+											</div>
+									<?php
+									  	}
 									?>
                                 </div>
                             </div>

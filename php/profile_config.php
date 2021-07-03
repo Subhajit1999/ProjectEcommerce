@@ -17,9 +17,11 @@
 	// Cards data
 	$card_json = json_decode( $user_data['cards'], true );
     $card_arr = $card_json != null? $card_json['cards']: array();
+	// Cart data
+	$cart_json = json_decode( $user_data['cart'], true );
+    $cart_arr = $cart_json != null? $cart_json['items']: array();
 
 	// Recent Orders
 	$recent_sql = "SELECT * from orders WHERE cust_id='".$user_data['id']."' ORDER BY order_no DESC";
 	$recent_res = mysqli_query($con, $recent_sql);
-//	echo "<script>alert('".$recent_data['order_no']."');</script>";
 ?>
