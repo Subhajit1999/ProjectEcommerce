@@ -60,7 +60,12 @@
 					<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $item_data['feature_img'] ).'"/>'; ?>
 
                     <div class="col-lg-6 col-md-5 product-info">
-                        <h2 class="product-name"><?php echo $item_data['brand']." - ".$item_data['short_desc']; ?></h2>
+                        <h2 class="product-name"><?php
+						$str = $item_data['brand']." - ".$item_data['short_desc'];
+						if (strlen($str) > 50) {
+							$str = substr($str, 0, 47) . '...';
+						}
+						echo $str; ?></h2>
 
 					<?php
 						if($item_data['mrp'] != $item_data['sale_price'] and $item_data['discount']>0) {
@@ -140,7 +145,12 @@
 					<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $item_data['feature_img'] ).'"/>'; ?>
 
                     <div class="col-lg-6 col-md-5 product-info">
-                        <h2 class="product-name"><?php echo $item_data['brand']." - ".$item_data['short_desc']; ?></h2>
+                        <h2 class="product-name"><?php
+						$str = $item_data['brand']." - ".$item_data['short_desc'];
+						if (strlen($str) > 50) {
+							$str = substr($str, 0, 47) . '...';
+						}
+						echo $str; ?></h2>
 
 					<?php
 						if($item_data['mrp'] != $item_data['sale_price'] and $item_data['discount']>0) {

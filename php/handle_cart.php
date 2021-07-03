@@ -45,7 +45,7 @@ if ( session_status() != PHP_SESSION_ACTIVE ) {
         			$cart_res = mysqli_query( $con, $cart_sql );
 
 					$_SESSION['toast_title'] = "Success!";
-					$_SESSION['toast_msg'] = "Product removed from Cart successfully.";
+					$_SESSION['toast_msg'] = "Product removed from Cart.";
 					$_SESSION['toast_type'] = "success";
 					setcookie("show-toast", "yes", time()+1000,'/');
 
@@ -65,7 +65,7 @@ if ( session_status() != PHP_SESSION_ACTIVE ) {
         			$later_res = mysqli_query( $con, $later_sql );
 
 					$_SESSION['toast_title'] = "Success!";
-					$_SESSION['toast_msg'] = "Product removed from Buy Later successfully.";
+					$_SESSION['toast_msg'] = "Product removed from Buy Later.";
 					$_SESSION['toast_type'] = "success";
 					setcookie("show-toast", "yes", time()+1000,'/');
 
@@ -89,7 +89,7 @@ if ( session_status() != PHP_SESSION_ACTIVE ) {
         			$res = mysqli_query( $con, $sql );
 
 					$_SESSION['toast_title'] = "Success!";
-					$_SESSION['toast_msg'] = "Product added to Buy Later successfully.";
+					$_SESSION['toast_msg'] = "Product added to Buy Later.";
 					$_SESSION['toast_type'] = "success";
 					setcookie("show-toast", "yes", time()+1000,'/');
 
@@ -113,7 +113,7 @@ if ( session_status() != PHP_SESSION_ACTIVE ) {
         			$res = mysqli_query( $con, $sql );
 
 					$_SESSION['toast_title'] = "Success!";
-					$_SESSION['toast_msg'] = "Product added to Cart successfully.";
+					$_SESSION['toast_msg'] = "Product added to Cart.";
 					$_SESSION['toast_type'] = "success";
 					setcookie("show-toast", "yes", time()+1000,'/');
 

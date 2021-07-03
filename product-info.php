@@ -24,10 +24,10 @@
 	$similar_res = mysqli_query( $con, $similar_sql );
 
 	$json = json_decode($prdct_data['sizes'], true);
-	$size_arr = $json!=null? $json['options'] : null;
+	$size_arr = $json!=null? $json['options'] : array();
 
 	$qnty = 1;
-	$size = $size_arr[0];
+	$size = count($size_arr)>0? $size_arr[0] : 'default';
 
 ?>
 

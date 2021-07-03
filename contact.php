@@ -10,8 +10,6 @@
 
 		$to = "karsubhajit01@gmail.com";
 
-//		echo "<script>alert('first name: ".$from."');</script>";
-
 		// Sending email
 		mail($to, $title, $msg_body);
 			$_SESSION['toast_title'] = "Success!";
