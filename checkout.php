@@ -27,6 +27,7 @@
 	 $phone = $address = $city = $state = $pin = null;
 	 $cardname = $cardnum = $expmnth = $expyr = null;
 	 if(count($addr)>0) {
+		 $fullname = $addr['name'];
 		 $phone = $addr['phone'];
 		 $address = $addr['addr'];
 		 $city = $addr['city'];
@@ -54,6 +55,11 @@
 
                                 <label for="email" class="field_title2"><i class="fa fa-phone"></i> Phone</label>
                                 <input type="text" id="phone" name="phone" placeholder="1234567890" value="<?php echo $phone; ?>" pattern="^\d{10}$" required>
+
+								<div id="save-phone" style="margin-top: 10px;">
+									<input type="checkbox" id="cb1" name="save-phone" style="width: 1.25rem;height: 1.25rem;border: 1px solid hsl(0, 0%, 85%);border-radius: 1px;vertical-align: sub;">
+									<label for="cb1" style="font-size:14px; margin-left:6px; color:orangered;"><b>Save number to my profile</b></label>
+								</div>
 
                                 <label for="adr" class="field_title2"><i class="fa fa-address-card-o"></i> Address</label>
                                 <input type="text" id="adr" name="address" placeholder="53 , Bmc Bldg,  Old Prabhadevi Road, Prabhadevi" value="<?php echo $address; ?>" required>
@@ -87,7 +93,7 @@
                                     <i class="fa fa-cc-discover" style="color:orange;"></i>
                                 </div>
 
-                                <label for="cname" class="field_title">Name on Card</label>
+                                <label style="margin-top:4rem;" for="cname" class="field_title">Name on Card</label>
                                 <input type="text" id="cardname" name="cardname" placeholder="John Smith" value="<?php echo $cardname; ?>" required>
 
                                 <label for="ccnum" class="field_title2">Credit/Debit card number</label>
@@ -105,7 +111,7 @@
                                         <input type="text" id="cvv" name="cvv" placeholder="352" pattern="^\d{3}$" required>
                                     </div>
                                 </div>
-								<div id="save-card" style="margin-top: 10px;">
+								<div id="save-card" style="margin-top: 3rem;">
 									<input type="checkbox" id="cb1" name="save-card" style="width: 1.25rem;height: 1.25rem;border: 1px solid hsl(0, 0%, 85%);border-radius: 1px;vertical-align: sub;">
 									<label for="cb1" style="font-size:14px; margin-left:6px; color:orangered;"><b>Save this card for future</b></label>
 								</div>

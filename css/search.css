@@ -30,17 +30,6 @@ html {
     color: #3a3a3a;
 }
 
-.nothing-msg-container {
-	width: 100%;
-	position: absolute;
-	text-align: center;
-}
-
-.nothing-msg-container h1,h2 {
-	margin:auto;
-    vertical-align:middle;
-}
-
 /*-------------product-top CSS----------------*/
 
 .product-top img {

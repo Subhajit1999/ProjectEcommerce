@@ -57,13 +57,18 @@
 				}
 			}
 			if($exist==0) {
-				$addr_item = array( "addr"=>$address, "city"=>$city, "state"=>$state, "pin"=>$pin, "phone"=>$phone);
+				$addr_item = array("name"=>$fullname, "addr"=>$address, "city"=>$city, "state"=>$state, "pin"=>$pin, "phone"=>$phone);
         		array_push($addr_arr, $addr_item);
 				$addr_json['addrs'] = array_values($addr_arr);
         		$json = json_encode( $addr_json );
 				$sql = "UPDATE `user` SET `addresses`='".$json."' WHERE id='".$user_data['id']."'";
 				$res = mysqli_query( $con, $sql );
 			}
+		}
+
+		if(isset($_POST['save-phone'])) { // If save address is checked
+			$save_phone = "UPDATE `user` SET `mobile`='".$phone."' WHERE id='".$user_data['id']."'";
+			$phone_res = mysqli_query( $con, $save_phone );
 		}
 
 		if(isset($_POST['save-card'])) { // If save card is checked
@@ -94,7 +99,8 @@
 		}
 		$reference = time();
 		$payment_success = 1;
-		$json = json_encode($cart_arr);
+		$order_json['items'] = array_values($cart_arr);
+		$json = json_encode($order_json);
 		$user_id = $user_data['id'];
 		$sql = "INSERT INTO `orders`(`items`, `cust_id`, `shipping_addr`, `total_amnt`, `order_no`, `status`, `payment_success`) VALUES ('$json','$user_id','$ship_address','$total_amnt','$reference','$status','$payment_success')";
 		$res = mysqli_query( $con, $sql );

@@ -50,7 +50,7 @@
 					// If no data found
 					if($count==0) {
 				?>
-						<div class="nothing-msg-container">
+						<div>
 							<h1 style="text-align:center;font-size:40px;font-weight:bold;color:orangered;margin-top:10%;">Sorry!<span style='font-size:40px;'>&#128532;</span></h1>
 
 							<h2 style="text-align:center;margin-bottom:10%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:26px;">Not found what you are looking for.</h2>
