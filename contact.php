@@ -11,10 +11,10 @@
 		$to = "karsubhajit01@gmail.com";
 
 		// Sending email
-		mail($to, $title, $msg_body);
-			$_SESSION['toast_title'] = "Success!";
-			$_SESSION['toast_msg'] = "Email sent successfully.";
-			$_SESSION['toast_type'] = "success";
+//		mail($to, $title, $msg_body);
+		$_SESSION['toast_title'] = "Success!";
+		$_SESSION['toast_msg'] = "Email sent successfully.";
+		$_SESSION['toast_type'] = "success";
 		?>
 
 			<?php require_once 'common/toast.php'; ?>

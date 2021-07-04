@@ -57,8 +57,8 @@
                                 <input type="text" id="phone" name="phone" placeholder="1234567890" value="<?php echo $phone; ?>" pattern="^\d{10}$" required>
 
 								<div id="save-phone" style="margin-top: 10px;">
-									<input type="checkbox" id="cb1" name="save-phone" style="width: 1.25rem;height: 1.25rem;border: 1px solid hsl(0, 0%, 85%);border-radius: 1px;vertical-align: sub;">
-									<label for="cb1" style="font-size:14px; margin-left:6px; color:orangered;"><b>Save number to my profile</b></label>
+									<input type="checkbox" id="cb0" name="save-phone" style="width: 1.25rem;height: 1.25rem;border: 1px solid hsl(0, 0%, 85%);border-radius: 1px;vertical-align: sub;">
+									<label for="cb0" style="font-size:14px; margin-left:6px; color:orangered;"><b>Save number to my profile</b></label>
 								</div>
 
                                 <label for="adr" class="field_title2"><i class="fa fa-address-card-o"></i> Address</label>
@@ -112,8 +112,8 @@
                                     </div>
                                 </div>
 								<div id="save-card" style="margin-top: 3rem;">
-									<input type="checkbox" id="cb1" name="save-card" style="width: 1.25rem;height: 1.25rem;border: 1px solid hsl(0, 0%, 85%);border-radius: 1px;vertical-align: sub;">
-									<label for="cb1" style="font-size:14px; margin-left:6px; color:orangered;"><b>Save this card for future</b></label>
+									<input type="checkbox" id="cb2" name="save-card" style="width: 1.25rem;height: 1.25rem;border: 1px solid hsl(0, 0%, 85%);border-radius: 1px;vertical-align: sub;">
+									<label for="cb2" style="font-size:14px; margin-left:6px; color:orangered;"><b>Save this card for future</b></label>
 								</div>
                             </div>
                         </div>

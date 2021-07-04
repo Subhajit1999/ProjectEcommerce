@@ -117,7 +117,7 @@
 				$_SESSION['toast_msg'] = "Order placed successfully.";
 				$_SESSION['toast_type'] = "success";
 				setcookie("show-toast", "yes", time()+1000,'/');
-				header("location:checkout.php");
+				header("location:thank.php");
 			}
 
 		}else { // If order unsuccessful

@@ -171,13 +171,13 @@
 										$i=0;
 										if($i<2){
 											foreach($cart_arr as $item) {
-												$sql = "SELECT * from product WHERE id='".$user_data['id']."'";
-												$res = mysqli_query($con, sql);
+												$sql = "SELECT * from product WHERE id='".$item['id']."'";
+												$res = mysqli_query($con, $sql);
 												$item_data = mysqli_fetch_array($res);
 									?>
                                     <div class="row orders-row">
                                         <div class="col-4">
-                                            <?php echo '<img height=365 src="data:image/jpeg;base64,'.base64_encode( $data['feature_img'] ).'" class="recent-orders-img"/>'; ?>
+                                            <?php echo '<img height=365 src="data:image/jpeg;base64,'.base64_encode( $item_data['feature_img'] ).'" class="recent-orders-img"/>'; ?>
                                         </div>
                                         <div class="col-6">
                                             <h5 class="recent-orders-h5"><?php echo $item_data['brand']; ?> <span class="wishlist-price">&#8377; <?php echo $item_data['sale_price']; ?></span></h5>
