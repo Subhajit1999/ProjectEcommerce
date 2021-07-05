@@ -99,30 +99,30 @@
 					<ul>
 						<li><a href="/ecommerce/category-products.php?cat_id=401">Topwear</a></li>
 						<li><a href="/ecommerce/category-products.php?cat_id=402">Bottomwear</a></li>
-						<li><a href="#">Footwear</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=403">Footwear</a></li>
 						<li><a href="/ecommerce/category-products.php?cat_id=404">Festive Wear</a></li>
-						<li><a href="#">Watches</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=405">Watches</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=406">Accessories</a></li>
 					</ul>
 				</li>
 				<li><a href="#">Women<i class="fa fa-angle-down"></i></a>
 					<ul>
-						<li><a href="#">Topwear</a></li>
-						<li><a href="#">Bottomwear</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=407">Topwear</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=408">Bottomwear</a></li>
 						<li><a href="/ecommerce/category-products.php?cat_id=409">Footwear</a></li>
-						<li><a href="#">Festive Wear</a></li>
-						<li><a href="#">Watches</a></li>
-						<li><a href="#">Accessories</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=410">Festive Wear</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=411">Watches</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=412">Accessories</a></li>
 					</ul>
 				</li>
 				<li><a href="#">Baby &amp;
 						Kids<i class="fa fa-angle-down"></i></a>
 					<ul>
-						<li><a href="#">Boys Clothing</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=413">Boys Clothing</a></li>
 						<li><a href="/ecommerce/category-products.php?cat_id=414">Girls Clothing</a></li>
-						<li><a href="#">Boys Footwear</a></li>
-						<li><a href="#">Girls Footwear</a></li>
-						<li><a href="#">Kids Accessories</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=415">Boys Footwear</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=416">Girls Footwear</a></li>
+						<li><a href="/ecommerce/category-products.php?cat_id=417">Kids Accessories</a></li>
 					</ul>
 				</li>
 			</ul>

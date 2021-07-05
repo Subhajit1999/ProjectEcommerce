@@ -54,12 +54,17 @@
 
     <!--------- Category based products ------------>
         <!-- On sale product -->
+	<?php
+		if(mysqli_num_rows($trend_res)!=0 or mysqli_num_rows($more_res)!=0) {
+	?>
     <section class="category-products">
         <div class="container">
             <div class="title-box">
                 <h2>Trending Now</h2>
             </div>
-
+		<?php
+			if(mysqli_num_rows($trend_res)!=0) {
+		?>
             <div class="row">
 				<?php
 					while($trend_row = mysqli_fetch_array($trend_res)) {
@@ -93,13 +98,30 @@
 					}
 				?>
             </div>
+			<?php
+				}else{
+			?>
+				<div class="container">
+                  <div class="nothing-msg-container">
+					<h1 style="text-align:center;font-size:30px;font-weight:bold;color:orangered;margin-top:10%;">Empty!<span style='font-size:30px;'>&#128532;</span></h1>
+
+					<h2 style="text-align:center;margin-bottom:15%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:22px;">There's no product in Trending right now.</h2>
+				   </div>
+        		</div>
+			<?php
+				}
+			?>
         </div>
     </section>
+
     <section class="category-products">
         <div class="container">
             <div class="title-box">
                 <h2>More Products</h2>
             </div>
+			<?php
+				if(mysqli_num_rows($more_res)!=0) {
+			?>
             <div class="row">
 				<?php
 					while($more_row = mysqli_fetch_array($more_res)) {
@@ -133,8 +155,36 @@
 					}
 				?>
             </div>
+			<?php
+			}else{
+	?>
+				<div class="container">
+                  <div class="nothing-msg-container">
+					<h1 style="text-align:center;font-size:30px;font-weight:bold;color:orangered;margin-top:10%;">Empty!<span style='font-size:30px;'>&#128532;</span></h1>
+
+					<h2 style="text-align:center;margin-bottom:15%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:22px;">There's no other product available in this category.</h2>
+				   </div>
+        		</div>
+	<?php
+			}
+	?>
         </div>
     </section>
+	<?php
+		}else{
+	?>
+			<section class="category-products">
+        		<div class="container">
+                  <div class="nothing-msg-container">
+					<h1 style="text-align:center;font-size:30px;font-weight:bold;color:orangered;margin-top:10%;">Sorry!<span style='font-size:30px;'>&#128532;</span></h1>
+
+					<h2 style="text-align:center;margin-bottom:15%;color:#3a3a3a;font-family: 'Satisfy', cursive;font-size:22px;">There's no product in this category. We will add soon.</h2>
+				   </div>
+        		</div>
+    </section>
+	<?php
+		}
+	?>
 
     <!----------- Footer -------------->
     <?php
